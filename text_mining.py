@@ -43,4 +43,4 @@ Jessica is 15 old, and Daniel is 27 years old.
 Edward is 97, and his 102 grandfather, Oscar is 102'''
 
 re.findall(r'\d{3,4}', exampleString)
-set(re.findall(r'(F|f)*iguras?', text_full))
+set(re.findall(r'[Ff]iguras?', text_full))
