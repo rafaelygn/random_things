@@ -1,5 +1,4 @@
 
-from collections import namedtuple
 '''
 String
     f-String, r-string
@@ -40,9 +39,11 @@ Class
 
 '''
 
+# Import packages
 import os
 import time
 import numpy as np
+from collections import namedtuple
 from sys import getsizeof
 from getpass import getpass
 
@@ -51,7 +52,7 @@ from getpass import getpass
 # Strings
 # --------------------------------------
 
-# Variáveis
+# Setting some variables
 country = 'Brasil'
 cc = 'BR'
 pop = 220_000_000
@@ -126,19 +127,11 @@ for element in original_list:
     new_list.append(element**2)
 
 # Map & lambda
-
-
 def lf_map(x): return x**2
-
-
 list(map(lf_map, original_list))
 
 # filter & Lambda
-
-
 def lf_f(x): return x % 2 == 0
-
-
 list(filter(lf_f, original_list))
 
 # Map & Filter & lambda
@@ -234,16 +227,20 @@ for key, value in country_code_dict.items():
 
 # Setting a usual function
 # That return a list
+
+
 def square_numbers(original_list: list) -> list:
     result = []
     for element in original_list:
         result.append(element**2)
     return result
 
+
 # This functions returns a generator
-def gen_square_numbers(original_list: list) -> generator:
+def gen_square_numbers(original_list: list) -> 'generator':
     for element in original_list:
         yield (element**2)
+
 
 # Using a Generator
 gen_result = square_numbers(original_list)
@@ -286,15 +283,81 @@ hack_password(gen_password, see_size=True)
 tf = time.perf_counter()
 print(f'It took {(tf -ti):.2f} seconds')
 
+
+# --------------------------------------
+# ARGS AND KWARGS
+# --------------------------------------
+
+# args and kwargs
+def silly_function_2(*args, **kwargs):
+    print('*args: ',*args)
+    print('args: ',args)
+    print('kwargs: ', kwargs)
+    return None
+
+silly_function_2('lala', 'lele', 'lili', kw=1, kw2=2)
+
+def train_one_model(log_time=None, *args, **kwargs):
+    if log_time:
+        print('Do log time')
+    print(kwargs)
+    from sklearn.tree import DecisionTreeClassifier
+    clf = DecisionTreeClassifier(**kwargs)
+    print(clf)
+    return None
+
+train_one_model(log_time=True,
+    criterion='gini', max_depth=10, min_samples_leaf=15)
+
+
+def train_many_models(**kwargs):
+    print(kwargs)
+    if 'log_time' in kwargs:
+        print('There is log time in **kwargs')
+        print(kwargs['log_time'])
+    if 'tree_model' in kwargs:
+        print('There is tree model in ** kwargs')
+        print(kwargs['tree_model'])
+        silly_function_2(**kwargs['tree_model'])
+        from sklearn.tree import DecisionTreeClassifier
+        clf = DecisionTreeClassifier(**kwargs['tree_model'])
+        print(clf)
+    if 'logit_reg' in kwargs:
+        pass 
+    return None
+
+train_many_models_kwargs = {
+    'log_time': True,
+    'tree_model': {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 15},
+    'logit_reg': {'l1': 0, 'l2': 0}
+}
+
+train_many_models(
+    log_time= True,
+    tree_model= {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 15},
+    logit_reg= {'l1': 0, 'l2': 0})
+train_many_models(**train_many_models_kwargs)
+
 # --------------------------------------
 # DECORATORS
 # --------------------------------------
 
+'''
+Decoradores de função nos permite marcar funções no código fonte para modificar
+o seu comportamento de alguma maneira. É um recurso poderoso, mas dominá-lo
+exige compreender as clouseres
+
+Um decorador é um invocável (callable) que aceita outra função como argumento
+(a função decorada). O decorador pode realizar algum processamento com a 
+função decorada e devolvê-la ou substituí-la por outra função ou um objeto
+'''
+
 # timeit decorator
 def timeit(method: callable) -> callable:
-    def time_method(*args, **kargs):
+
+    def time_method(*args, **kwargs):
         ti = time.perf_counter()
-        method_result = method(*args, **kargs)
+        method_result = method(*args, **kwargs)
         tf = time.perf_counter()
         print(f'The {method.__name__} function took {(tf -ti):.2f} s')
         return method_result
@@ -314,6 +377,101 @@ def hack_password(iterator, see_size=False):
 # Let's experiment it
 hack_password(lis_password, see_size=True)
 
+
+'''
+O decorador timeit implementado tem algumas deficiências:
+Ele não aceita argumentos nomeados e mascara __name__
+e __doc__ da função decorada.
+
+Para entender isso o @timeit
+
+@timeit
+def hack_password(arg):
+    [do something]
+    return result
+
+é equivalente á:
+
+def hack_password(arg):
+    [do something]
+    return result
+
+hack_password = timeit(hack_password)
+'''
+
+print(hack_password.__name__)
+print(hack_password.__doc__)
+
+'''Para corrigir isso podemos utilizar o functools.wraps
+Assim os atributos importantes relevantes também são copiados'''
+
+from functools import wraps 
+
+def timeit(method: callable) -> callable:
+    @wraps(method)
+    def time_method(*args, **kwargs):
+        ti = time.perf_counter()
+        method_result = method(*args, **kwargs)
+        tf = time.perf_counter()
+        print(f'The {method.__name__} function took {(tf -ti):.2f} s')
+        return method_result
+    return time_method
+
+# Altering original function
+# Now we can measure how long a function lasts
+@timeit
+def hack_password(iterator, see_size=False):
+    '''
+    Through an iterator we discover a numeric password
+    '''
+    if see_size:
+        print(f'Size of iterator: {getsizeof(iterator)/10**3:.2f} KB')
+    for try_pssw in iterator:
+        if try_pssw == password:
+            print(f'The Password is {try_pssw}')
+            break
+
+print(hack_password.__name__)
+print(hack_password.__doc__)
+
+# Python tem 3 funções embutidas criadas para decorar métodos:
+#   property, classmethod, staticmethod
+
+# Another decorator
+def my_logger(original_func):
+
+    import logging
+    file = f'{original_func.__name__}.log'
+    print(file)
+    logging.basicConfig(filename=file,
+    level= logging.INFO)
+
+    def wrapper(*args, **kwargs):
+        result = original_func(*args, **kwargs)
+        log = (
+            f'Ran with args {args}, and kwargs {kwargs} '
+            f'and result: {result}'
+        )
+        logging.info(log)
+        print(log)
+        return result
+    
+    return wrapper
+
+@my_logger
+def hack_password_v1(iterator, see_size=False):
+    '''
+    Through an iterator we discover a numeric password
+    '''
+    if see_size:
+        print(f'Size of iterator: {getsizeof(iterator)/10**3:.2f} KB')
+    for try_pssw in iterator:
+        if try_pssw == password:
+            print(f'The Password is {try_pssw}')
+            return try_pssw
+            
+        
+hack_password_v1(lis_password, see_size=True)
 
 # --------------------------------------
 # Class
@@ -343,13 +501,16 @@ class Vector:
 
     def __add__(self, other):
         # This method allows you sum 2 vectors class 
+        # as a float/integers
         x = self.x + other.x
         y = self.y + other.y
         return Vector(x, y)
 
     def __add2__(self, other):
-        x = int(str(self.x) +str(other.x))
-        y = int(str(self.y) +str(other.y))
+        # This method allows you sum 2 vectors class 
+        # as a string and then convert to a int
+        x = int(str(self.x) + str(other.x))
+        y = int(str(self.y) + str(other.y))
         return Vector(x,y)
 
     def __mul__(self, scalar):
@@ -370,4 +531,169 @@ print(bool(Vector()))
 print(len(v1))
 print(v1.__len__())
 print(v1.__add__(v2))
+
 print(v1*3)
+
+# Decorators as input
+
+
+
+
+# --------------------------------------
+# Closures
+# --------------------------------------
+
+b = 6
+def f1(a):
+    print(a)
+    print(b)
+
+# Se b não foi definida anterioramente, isso causará um erro
+# Isto é, b precisa ser uma variável global
+
+def f2(a):
+    print(a)
+    print(b)
+    b = 9
+
+# Mesmo b sendo uma variável global isso causará um erro.
+# Pois estamos atribuindo b dentro de uma função
+# a função f2 primeiro entende que b é um variável local
+# e. portando, gera um erro.
+
+def f3(a):
+    global b
+    print(a)
+    print(b)
+    b = 9
+
+# Neste caso, como fixamos b como global mesmo dentro de f3
+# Isso signinifca que printaremos b como 6, mas ao final da
+# função f3 b terá valor de 9 globalmente
+# A princípio isso é mecanismo de defesa do Python,
+# Não queremos que as variáveis Globais sejam alteradas dentro
+# de uma função
+
+# Closures
+
+# Queremos calcular a média que vai se atualizando diariamente
+
+# 1. Utilizando uma Classe
+class Averager():
+
+    def __init__(self):
+        self.series = []
+
+    def __call__(self, new_value):
+        self.series.append(new_value)
+        total = sum(self.series)
+        return total / len(self.series)
+    
+# Testando
+avg = Averager()
+avg(10)
+avg(11)
+avg(12)
+
+
+# 2. Utilizando funções
+def make_averager():
+    '''
+    Quando chamada make_averager devolve um objeto função averager.
+    Sempre que um averager é chamado, ele concatena o argumento passado
+    á série e calcula a média atual.
+    '''
+    series = []
+
+    def averager(new_value):
+        series.append(new_value)
+        total = sum(series)
+        return  total / len(series)
+    
+    return averager
+
+# Testendo
+avg = make_averager()
+avg(10)
+avg(11)
+avg(12)
+
+'''
+O local em que avg da classe Averager mantém o histórico é óbvio
+No atributo de instância self.series
+
+Mas em que lugar a função avg no segundo exmplo encontra series?
+
+Observe que series é uma variável local de make_avgerager
+porque a inicilização está no corpo dessa função. Porém,
+quando avg(10) é chamado, make_averager já retornou e seu escopo
+local não existe mais
+
+Em averager, series é uma variável livre. Esse é um termo técnico
+que indica que uma variável não tem associação no escopo local
+'''
+
+# onde está series?
+avg.__code__.co_freevars
+avg.__closure__[0].cell_contents
+
+'''
+Uma Closure é uma função que preserva as associações com as 
+variáveis livres existentes quando a função é definida, de modo
+que elas possam ser utilizadas posteriormente quando a função
+for chamada e o escopo de definição não estiver mais disponível
+
+Note que a única situação em que uma função pode precisar lidar
+com variáveis externas que não sejam globais é quando ela está
+aninhada em uma outra função
+'''
+
+# Declaração non local
+# Fazendo uma implementação mais eficiente que anterior
+
+def make_averager():
+    count = 0
+    total = 0
+
+    def averager(new_value):
+        nonlocal count, total
+        count += 1
+        total += new_value
+        return total / count
+
+    return averager
+
+avg = make_averager()
+avg(10)
+avg(11)
+avg(12)
+
+# --------------------------------------
+# Partial
+# --------------------------------------
+
+from functools import partial
+
+def dataprep_minmax():
+    print('Fiz min-max')
+
+def dataprep_dummy():
+    print('Fiz dummy')
+
+def dataprep_split(anomes=None):
+    print(f'String in {anomes}')
+
+def dataprep(feature_scaling, encoding, date_split):
+    feature_scaling()
+    encoding()
+    date_split()
+    return None
+
+def set_arguments_split(*args, **kwargs):
+    def dataprep_split(anomes=kwargs):
+        print(f'String in {anomes}')
+    return dataprep_split
+
+
+dataprep_minmax_dummy = partial(dataprep, dataprep_minmax, dataprep_dummy)
+dataprep_minmax_dummy(set_arguments_split(anomes=201701))
