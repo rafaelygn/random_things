@@ -1,5 +1,7 @@
 ## Random Things
 
+this repository is organized in: 
+
     Everything
         -- helpful.txt
     Python buildin functions
@@ -8,8 +10,6 @@
 
 When i'm studying, I like to have some easy query files.
 I always can consult when in doubt of some command, sintax or idea
-
-
 
 **helpful.txt**
 
@@ -29,7 +29,7 @@ I always can consult when in doubt of some command, sintax or idea
     * Special Methods
     * Closures
 
-    This material is based from Python Fluent from Ramalho, Luciano
+    This material is based from book Python Fluent from Ramalho, Luciano
     and Corey Schafer youtube Channel
 
 I Hope you enjoy!
