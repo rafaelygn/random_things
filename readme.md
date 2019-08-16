@@ -9,11 +9,15 @@
 When i'm studying, I like to have some easy query files.
 I always can consult when in doubt of some command, sintax or idea
 
+
+
 **helpful.txt**
 
     * VSCode tips
     * Git Commands
     * Linux Command
+    * Python
+    * Python venv
 
 **python_trick.py|ipynb**
 
@@ -24,3 +28,8 @@ I always can consult when in doubt of some command, sintax or idea
     * Decoratos
     * Special Methods
     * Closures
+
+    This material is based from Python Fluent from Ramalho, Luciano
+    and Corey Schafer youtube Channel
+
+I Hope you enjoy!

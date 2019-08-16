@@ -70,3 +70,26 @@
     -- rename a file:
         mv .gitigore .gitignore
 
+[Python]
+    -- show the python path: which python (on terminal)
+    -- show all pythons installed (on terminal)
+    -- show all packages installed: pip list (on terminal)
+
+[Python venv]
+    -- it's recommend that venv be created inside project folder
+    -- Create a venv: python -m venv <PROJECT_NAME>
+    -- Activate venv: 
+            venv\Scripts\activate.bat (windonws)
+            source venv\Scripts\activate
+    -- Deactivate: 
+            deactivate (any current folder)
+    -- See all packages: pip list
+    -- See all packages and its versions: pip freeze
+    -- Create a requirements.txt: pip freeze > requirements.txt
+    -- install requirements: pip install -r requirements.txt
+
+    -- Create a venv with system default python packages:
+            pythom -m venv {NAME} --system-site-packages
+    -- if call the command above, and you want to see only packages
+    installed in this venv:
+            pip list --local
