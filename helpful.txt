@@ -1,0 +1,72 @@
+[VSCode]
+    -- Command Pallet: Ctrl+Shift+P
+    -- Terminal: Ctrl + '
+    -- Settings: File -> Preferences -> Settings
+    -- Format Document: Shift + Alt + F
+    -- Go to origin file: select function and F12
+    -- Go to peek definition: Shift + F12
+
+ 
+[GIT]
+    -- initialize track current dir: git init
+        if you type 'ls', so a new dir'll appear '.git'
+        if you don't want track a dir, so just del '.git'
+    -- See what changes have happen: git status
+    -- Create a git ignore file: touch .gitignore
+        All inside will not be considered on 'git status'
+            *.csv (wild cards)
+
+    3 STAGES ON GIT
+        1. Working Dir
+            {STAGE FIXES}
+            2. Staging Area
+                {COMMIT}
+                3. .git directory (locally)
+                {pull|push to everyone!}
+                    4. In any git!
+
+    git pull origin master:
+        See all changes that have happened
+        if already appears to up-to-date means that there is no branch to unify
+        You are, now, ready to push!
+
+    Now your .git dir is ready!
+    You have 3 options:
+
+        1. create a new repo
+            git init
+            git add [file]
+            git commit -m 'first commit'
+            git remote add origin https://url
+            git push -u orign master
+
+        2. push an existing repo from the command line
+            git remote add origin https://url
+            git push -u orign master
+
+        3. from git clone
+            git clone
+            git add [file]
+            git commit -m 'Some text'
+            git pull origin master
+            git push -u origin master
+
+    Add files to staging area: git add -A (everything)
+    Remove files from stage area: git reset
+    commit files from staging area to .git: git commit -m "Some comment"
+    see git log: git log
+
+    -- Less importante
+        VScode
+            U: untrack
+            M: Modified
+
+
+[Linux Command]
+    -- change date metadata: touch
+        if a file doesn't exist, he create a new one
+        if you want to touch everything: dir/*
+
+    -- rename a file:
+        mv .gitigore .gitignore
+
