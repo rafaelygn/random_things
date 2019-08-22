@@ -1,0 +1,72 @@
+2019-08-22 19:26:55,510:DEBUG:add: 20 operation 4 = 24
+2019-08-22 19:26:55,511:DEBUG:subtract: 20 operation 4 = 16
+2019-08-22 19:26:55,511:DEBUG:multiply: 20 operation 4 = 80
+2019-08-22 19:26:55,511:DEBUG:divide: 20 operation 4 = 5.0
+2019-08-22 19:27:27,369:DEBUG:add: 10 operation 5 = 15
+2019-08-22 19:27:27,370:DEBUG:subtract: 10 operation 5 = 5
+2019-08-22 19:27:27,370:DEBUG:multiply: 10 operation 5 = 50
+2019-08-22 19:27:27,370:DEBUG:divide: 10 operation 5 = 2.0
+2019-08-22 19:28:39,405:INFO:Python file:__main__
+2019-08-22 19:28:39,406:DEBUG:add: 10 operation 5 = 15
+2019-08-22 19:28:39,406:DEBUG:subtract: 10 operation 5 = 5
+2019-08-22 19:28:39,406:DEBUG:multiply: 10 operation 5 = 50
+2019-08-22 19:28:39,406:DEBUG:divide: 10 operation 5 = 2.0
+2019-08-22 19:32:12,920:INFO:Python file:__main__
+"2019-08-22 20:10:00,614:__main__:INFO:Inicializate thie Python file as : __main__"
+"2019-08-22 20:10:41,090:__main__:INFO:Inicializate thie Python file as : __main__"
+"2019-08-22 20:11:10,642:__main__:INFO:Inicializate thie Python file as : __main__"
+"2019-08-22 20:11:10,642:__main__:INFO:add: 10 operation 5 = 15"
+"2019-08-22 20:11:10,642:__main__:INFO:subtract: 10 operation 5 = 5"
+"2019-08-22 20:11:10,642:__main__:INFO:multiply: 10 operation 5 = 50"
+"2019-08-22 20:11:10,642:__main__:INFO:divide: 10 operation 5 = 2.0"
+"2019-08-22 20:13:06,659:__main__:INFO:Inicializate thie Python file as : __main__"
+"2019-08-22 20:13:06,659:__main__:INFO:add: 50 operation 4 = 54"
+"2019-08-22 20:13:06,660:__main__:INFO:subtract: 50 operation 4 = 46"
+"2019-08-22 20:13:06,660:__main__:INFO:multiply: 50 operation 4 = 200"
+"2019-08-22 20:13:06,660:__main__:INFO:divide: 50 operation 4 = 12.5"
+"2019-08-22 20:21:12,180:__main__:INFO:Inicializate thie Python file as : __main__"
+"2019-08-22 20:21:12,180:__main__:INFO:add: 50 operation 0 = 50"
+"2019-08-22 20:21:12,180:__main__:INFO:subtract: 50 operation 0 = 50"
+"2019-08-22 20:21:12,180:__main__:INFO:multiply: 50 operation 0 = 0"
+"2019-08-22 20:21:12,180:__main__:ERROR:Tried to divide by zero"
+Traceback (most recent call last):
+  File "logging_config.py", line 74, in divide
+    result = x / y
+ZeroDivisionError: division by zero
+"2019-08-22 20:21:12,180:__main__:INFO:divide: 50 operation 0 = None"
+"2019-08-22 20:25:57,524:__main__:INFO:Inicializate thie Python file as : __main__"
+"2019-08-22 20:25:57,524:__main__:INFO:add: 50 operation 0 = 50"
+"2019-08-22 20:25:57,525:__main__:INFO:subtract: 50 operation 0 = 50"
+"2019-08-22 20:25:57,525:__main__:INFO:multiply: 50 operation 0 = 0"
+"2019-08-22 20:25:57,525:__main__:ERROR:Tried to divide by zero"
+Traceback (most recent call last):
+  File "logging_config.py", line 79, in divide
+    result = x / y
+ZeroDivisionError: division by zero
+"2019-08-22 20:25:57,527:__main__:INFO:divide: 50 operation 0 = None"
+"2019-08-22 20:26:08,809:__main__:INFO:Inicializate thie Python file as : __main__"
+"2019-08-22 20:26:08,809:__main__:INFO:add: 50 operation 0 = 50"
+"2019-08-22 20:26:08,810:__main__:INFO:subtract: 50 operation 0 = 50"
+"2019-08-22 20:26:08,810:__main__:INFO:multiply: 50 operation 0 = 0"
+"2019-08-22 20:26:08,811:__main__:ERROR:Tried to divide by zero"
+Traceback (most recent call last):
+  File "logging_config.py", line 79, in divide
+    result = x / y
+ZeroDivisionError: division by zero
+"2019-08-22 20:26:08,812:__main__:INFO:divide: 50 operation 0 = None"
+"2019-08-22 20:26:38,512:__main__:INFO:Inicializate thie Python file as : __main__"
+"2019-08-22 20:26:38,512:__main__:DEBUG:add: 50 operation 0 = 50"
+"2019-08-22 20:26:38,512:__main__:DEBUG:subtract: 50 operation 0 = 50"
+"2019-08-22 20:26:38,513:__main__:DEBUG:multiply: 50 operation 0 = 0"
+"2019-08-22 20:26:38,513:__main__:ERROR:Tried to divide by zero"
+Traceback (most recent call last):
+  File "logging_config.py", line 79, in divide
+    result = x / y
+ZeroDivisionError: division by zero
+"2019-08-22 20:26:38,514:__main__:DEBUG:divide: 50 operation 0 = None"
+"2019-08-22 20:28:42,214:__main__:INFO:Inicializate thie Python file as : __main__"
+"2019-08-22 20:28:42,215:__main__:ERROR:Tried to divide by zero"
+Traceback (most recent call last):
+  File "logging_config.py", line 79, in divide
+    result = x / y
+ZeroDivisionError: division by zero

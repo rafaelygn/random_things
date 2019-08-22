@@ -5,8 +5,13 @@ this repository is organized in:
     Everything
         -- helpful.txt
     Python buildin functions
+        -- ./
         -- python_tricks.py
         -- python_tricks.ipynb
+
+        -- logging_config.py
+            ./log/
+            -- logging_test.log
 
 When i'm studying, I like to have some easy query files.
 I always can consult when in doubt of some command, sintax or idea
