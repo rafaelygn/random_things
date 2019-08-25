@@ -1,6 +1,9 @@
-## Random Things
+# Random Things
 
-this repository is organized in: 
+When i'm studying, I like to have some easy query files.
+I always can consult when in doubt of some command, sintax or idea
+
+## This repository is organized in
 
     Everything
         ./
@@ -14,10 +17,7 @@ this repository is organized in:
             ./log/
             -- logging_test.log
 
-When i'm studying, I like to have some easy query files.
-I always can consult when in doubt of some command, sintax or idea
-
-### helpful.txt
+### 1. helpful.txt
 
     * VSCode tips
     * Git Commands
@@ -25,7 +25,7 @@ I always can consult when in doubt of some command, sintax or idea
     * Python
     * Python venv
 
-### python_trick.py|ipynb
+### 2. python_trick.(py|ipynb)
 
     * String
     * Tuples
@@ -38,12 +38,12 @@ I always can consult when in doubt of some command, sintax or idea
     This material is based from book Python Fluent from Ramalho, Luciano
     and Corey Schafer youtube Channel
 
-### logging_config
+### 3. logging_config.py
 
     Here we set logging config!
 
     We create a logging class variable that captures and write into
-    a log file in log folder!
+    a log file in log folder
 
     We set logging level, formatter, filename and its stream
 

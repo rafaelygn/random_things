@@ -218,6 +218,40 @@ for value in country_code_dict.values():
 for key, value in country_code_dict.items():
     print(key, value)
 
+# Default Dict
+index = {}
+index['Hello'] # it'll return KeyError
+index.setdefault('Hello',0)
+index['Hello'] # Hello is added to index dict with 0 value withou error
+
+# but i can use default dict
+from collections import defaultdict
+index = defaultdict(0) 
+index['Hello'] 
+
+# the argument should be a callable
+# some types:
+# list -> []
+# str -> ''
+# int -> 0
+
+# Operation dict.__getitem__(key) -> dict[key]
+
+# SET
+some_list = ['spam', 'spam', 'eggs', 'spam']
+set(some_list)
+# some set operations
+prime_number = [2, 3, 5, 7, 11]
+odd_number = [1,3,5,7,9,11]
+set(prime_number) | set(odd_number) # Union
+set(prime_number) & set(odd_number) # Intersection
+set(prime_number) - set(odd_number) # diference
+# Set comprehension
+{1, 2, 2, 3} # return {1,2,3}
+from unicodedata import name
+{chr(i) for i in range(32,256) if 'SIGN' in name(chr(i),'')}
+
+
 # --------------------------------------
 # Generators
 # --------------------------------------
